@@ -1,11 +1,11 @@
 package com.myphotos.demo.service;
 
+import com.myphotos.demo.model.Watch;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myphotos.demo.model.Photo;
 import com.myphotos.demo.repository.IPhotoRepository;
 
 @Service("mainPhotoService")
@@ -15,34 +15,34 @@ public class DbPhotoService implements IPhotoService {
 	private IPhotoRepository photoRepository;
 	
 	@Override
-	public Iterable<Photo> getAll() {
+	public Iterable<Watch> getAll() {
 
 		return photoRepository.findAll();
 	}
 	
 	@Override
-	public Optional<Photo> getById(int id) {
+	public Optional<Watch> getById(int id) {
 		
 		return photoRepository.findById(id);
 	}
 	
 	@Override
-	public Photo create(Photo photo) {
+	public Watch create(Watch watch) {
 		
-		return photoRepository.save(photo);
+		return photoRepository.save(watch);
 	}
 	
 	@Override
-	public Optional<Photo> update(int id, Photo photo) {
+	public Optional<Watch> update(int id, Watch watch) {
 		
-		Optional<Photo> foundPhoto = photoRepository.findById(id);
+		Optional<Watch> foundPhoto = photoRepository.findById(id);
 		
 		if (foundPhoto.isEmpty()) {
 			
 			return Optional.empty();
 		}
 		
-		foundPhoto.get().setUrl(photo.getUrl());
+		foundPhoto.get().setDescription(watch.getDescription());
 		
 		photoRepository.save(foundPhoto.get());
 		
@@ -52,7 +52,7 @@ public class DbPhotoService implements IPhotoService {
 	@Override
 	public Boolean delete(int id) {
 		
-		Optional<Photo> foundPhoto = photoRepository.findById(id);
+		Optional<Watch> foundPhoto = photoRepository.findById(id);
 		
 		if (foundPhoto.isEmpty()) {
 			

@@ -1,68 +1,65 @@
 package com.myphotos.demo.service;
 
+import com.myphotos.demo.model.Watch;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.myphotos.demo.model.Photo;
-
 @Service
 public class PhotoService implements IPhotoService {
 
-	private List<Photo> list;
+	private List<Watch> list;
 	
 	private int lastId;
 	
 	public PhotoService() {
 		
-		list = new ArrayList<Photo>();
-		
-		list.add(new Photo(1, "./img/01.png"));
-		list.add(new Photo(2, "./img/02.png"));
-		list.add(new Photo(3, "./img/03.png"));
+		list = new ArrayList<Watch>();
+		(int id, String description, int price, String serial)
+		list.add(1,"")
 		
 		lastId = 3;
 	}
 	
 	@Override
-	public Iterable<Photo> getAll() {
+	public Iterable<Watch> getAll() {
 		
 		return list;
 	}
 	
 	@Override
-	public Optional<Photo> getById(int id) {
+	public Optional<Watch> getById(int id) {
 		
-		Optional<Photo> photo = list.stream().filter(item->item.getId() == id).findFirst();
+		Optional<Watch> photo = list.stream().filter(item->item.getId() == id).findFirst();
 		
 		return photo;
 	}
 	
 	@Override
-	public Photo create(Photo photo) {
+	public Watch create(Watch watch) {
 		
 		lastId++;
 		
-		photo.setId(lastId);
+		watch.setId(lastId);
 		
-		list.add(photo);
+		list.add(watch);
 		
-		return photo;
+		return watch;
 	}
 	
 	@Override
-	public Optional<Photo> update(int id, Photo photo) {
+	public Optional<Watch> update(int id, Watch watch) {
 		
-		Optional<Photo> foundPhoto = list.stream().filter(item->item.getId() == id).findFirst();
+		Optional<Watch> foundPhoto = list.stream().filter(item->item.getId() == id).findFirst();
 		
 		if (foundPhoto.isEmpty()) {
 			
 			return Optional.empty();
 		}
 		
-		foundPhoto.get().setUrl(photo.getUrl());
+		foundPhoto.get().setDescription(watch.getDescription());
 		
 		return foundPhoto;
 	}
@@ -70,7 +67,7 @@ public class PhotoService implements IPhotoService {
 	@Override
 	public Boolean delete(int id) {
 		
-		Optional<Photo> foundPhoto = list.stream().filter(item->item.getId() == id).findFirst();
+		Optional<Watch> foundPhoto = list.stream().filter(item->item.getId() == id).findFirst();
 		
 		if (foundPhoto.isEmpty()) {
 

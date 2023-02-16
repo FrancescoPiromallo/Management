@@ -1,7 +1,10 @@
-CREATE TABLE `photo` (
-  `id` int(11) NOT NULL,
-  `url` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+create table public.watches(
+id int not null,
+description varchar(255) not null,
+price int not null,
+serial varchar(255) unique,
+primary key(id));
+
 
 INSERT INTO `photo` (`id`, `url`) VALUES
 (1, './img/01.png'),

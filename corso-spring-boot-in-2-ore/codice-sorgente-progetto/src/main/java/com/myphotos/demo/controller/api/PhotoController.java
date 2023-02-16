@@ -1,5 +1,6 @@
 package com.myphotos.demo.controller.api;
 
+import com.myphotos.demo.model.Watch;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.myphotos.demo.model.Photo;
 import com.myphotos.demo.service.IPhotoService;
 
 @RestController
@@ -25,15 +25,15 @@ public class PhotoController {
 	}
 	
 	@RequestMapping("/api/photos")
-	public Iterable<Photo> getAll() {
+	public Iterable<Watch> getAll() {
 		
 		return photoService.getAll();
 	}
 	
 	@RequestMapping("/api/photos/{id}")
-	public Photo getById(@PathVariable int id) {
+	public Watch getById(@PathVariable int id) {
 		
-		Optional<Photo> photo = photoService.getById(id);
+		Optional<Watch> photo = photoService.getById(id);
 		
 		if (photo.isEmpty()) {
 			

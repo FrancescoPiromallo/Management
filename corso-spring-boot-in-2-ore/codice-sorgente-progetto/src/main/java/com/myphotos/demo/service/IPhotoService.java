@@ -1,18 +1,17 @@
 package com.myphotos.demo.service;
 
+import com.myphotos.demo.model.Watch;
 import java.util.Optional;
-
-import com.myphotos.demo.model.Photo;
 
 public interface IPhotoService {
 
-	public Iterable<Photo> getAll();
+	public Iterable<Watch> getAll();
 	
-	public Optional<Photo> getById(int id);
+	public Optional<Watch> getById(int id);
 	
-	public Photo create(Photo photo);
+	public Watch create(Watch watch);
 	
-	public Optional<Photo> update(int id, Photo photo);
+	public Optional<Watch> update(int id, Watch watch);
 	
 	public Boolean delete(int id);
 }

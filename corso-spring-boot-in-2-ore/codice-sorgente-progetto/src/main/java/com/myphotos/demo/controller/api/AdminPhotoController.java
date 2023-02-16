@@ -1,5 +1,6 @@
 package com.myphotos.demo.controller.api;
 
+import com.myphotos.demo.model.Watch;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.myphotos.demo.model.Photo;
 import com.myphotos.demo.service.IPhotoService;
 
 @RestController
@@ -29,15 +29,15 @@ public class AdminPhotoController {
 	}
 	
 	@RequestMapping("/admin/api/photos")
-	public Iterable<Photo> getAll() {
+	public Iterable<Watch> getAll() {
 		
 		return photoService.getAll();
 	}
 	
 	@RequestMapping("/admin/api/photos/{id}")
-	public Photo getById(@PathVariable int id) {
+	public Watch getById(@PathVariable int id) {
 		
-		Optional<Photo> photo = photoService.getById(id);
+		Optional<Watch> photo = photoService.getById(id);
 		
 		if (photo.isEmpty()) {
 			
@@ -48,15 +48,15 @@ public class AdminPhotoController {
 	}
 	
 	@RequestMapping(value = "/admin/api/photos", method = RequestMethod.POST)
-	public Photo create(@Valid @RequestBody Photo photo) {
+	public Watch create(@Valid @RequestBody Watch watch) {
 		
-		return photoService.create(photo);
+		return photoService.create(watch);
 	}
 	
 	@RequestMapping(value = "/admin/api/photos/{id}", method = RequestMethod.PUT)
-	public Photo update(@PathVariable int id, @Valid @RequestBody Photo photo) {
+	public Watch update(@PathVariable int id, @Valid @RequestBody Watch watch) {
 		
-		Optional<Photo> updatedPhoto = photoService.update(id, photo);
+		Optional<Watch> updatedPhoto = photoService.update(id, watch);
 		
 		if (updatedPhoto.isEmpty()) {
 			
